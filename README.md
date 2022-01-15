@@ -73,7 +73,20 @@ or use the Maven `package` task to build an executable .jar file with dependenci
 
 Please see CLI parameters for the parameters that need to be specified to run it.
 
-## CLI parameters
+## Usage and CLI parameters
+
+The application can be used in 3 modes by specifying the first parameter: `embed`, `extract` or `psnr`. 
+Type them without any additional parameters to see help information.
+
+**The extraction algorithm settings should match the ones used for embedding!**
+
+Usage examples:
+```
+embed -c R:\riga.mp4 -o R:\riga_encoded.mp4 -w R:\mark_logo.bmp -a 1
+extract -s R:\riga_encoded.mp4 -o R:\result.png -width 90 -height 90 -a 1
+extract -s R:\riga_encoded.mp4 -o R:\result.png -w R:\mark_logo.bmp -a 1 --watermark-path R:\output
+psnr -c R:\riga_compressed.mp4 -s R:\riga_encoded.mp4
+```
 
 ## Algorithm settings
 All algorithms support various parameters. The main ones:
@@ -92,7 +105,7 @@ The folder `samples` includes 3 short sample video files for testing:
 * flowers.mp4 - video of red flowers in the wind with some movement;
 * riga.mp4 - video featuring the City of Riga, almost no visible movement.
 
-Also there are multiple sample watermarks provided:
+Also, there are multiple sample watermarks provided:
 * mark_logo.bmp - logo with the Riga Technical University logo (BMP, Black&White, 90x90 pixels);
 * mark.bmp - logo with the letters RTU (BMP, Black&White, 90x90 pixels);
 * mark2.bmp - sames as mark.bmp, but size is 171x96 (stretched for widescreen);
