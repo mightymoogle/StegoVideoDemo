@@ -2,7 +2,7 @@
 
 ## About this project
 
-This is a part of a tool developed by David Griberman in 2014 during his Master thesis. 
+This is a part of a tool developed by **David Griberman** in 2014 during his Master thesis. 
 It was cleaned up and published in 2022 as a command line application.
 
 The code is provided as-is without any warranties or tests. I do not plan to actively maintain this repository. 
@@ -91,26 +91,28 @@ psnr -c R:\riga_compressed.mp4 -s R:\riga_encoded.mp4
 ## Algorithm settings
 All algorithms support various parameters. The main ones:
 
-1. Embedding strength - this controls how 
-2. Compression - this controls how much the image gets compressed. 
+1. `Embedding strength` - this controls how well the watermark is embedded during the DCT transformation. 
+   Larger number leads to a more robust watermark, but will most likely be more visible and may result in a lower PSNR.
+   The value depends on the algorithm selected and on the video container used.
+2. `Compression` - this controls how much the image gets compressed. 
    We recommend keeping it at 0 for minimum additional compression. 2 attacks support compression of the video stream.
-3. Block size - this controls the block size of the DCT transformation. We recommend keeping it at 8.
-4. Adaptive mode  - this enables the Adaptive mode described in the article. 
+3. `Block size` - this controls the block size of the DCT transformation. We recommend keeping it at 8.
+4. `Adaptive mode`  - this enables the Adaptive mode described in the article in the introduction. 
    It embeds based on the movement in the video and ignores monotone images. 
    Please note - implementation is very slow and basic.
 
 ## Sample files
 The folder `samples` includes 3 short sample video files for testing:
-* flags.mp4 - video of multiple colored flags quickly moving in the wind with lots of movement;  
-* flowers.mp4 - video of red flowers in the wind with some movement;
-* riga.mp4 - video featuring the City of Riga, almost no visible movement.
+* `flags.mp4` - video of multiple colored flags quickly moving in the wind with lots of movement;  
+* `flowers.mp4` - video of red flowers in the wind with some movement;
+* `riga.mp4` - video featuring the City of Riga, almost no visible movement.
 
 Also, there are multiple sample watermarks provided:
-* mark_logo.bmp - logo with the Riga Technical University logo (BMP, Black&White, 90x90 pixels);
-* mark.bmp - logo with the letters RTU (BMP, Black&White, 90x90 pixels);
-* mark2.bmp - sames as mark.bmp, but size is 171x96 (stretched for widescreen);
-* mark3.bmp - same as mark.bmp, but size is 10x10 pixels;
-* mark4.bmp - same as mark.bmp, but size is 70x70 pixels.
+* `mark_logo.bmp` - logo with the Riga Technical University logo (BMP, Black&White, 90x90 pixels);
+* `mark.bmp` - logo with the letters RTU (BMP, Black&White, 90x90 pixels);
+* `mark2.bmp` - sames as mark.bmp, but size is 171x96 (stretched for widescreen);
+* `mark3.bmp` - same as mark.bmp, but size is 10x10 pixels;
+* `mark4.bmp` - same as mark.bmp, but size is 70x70 pixels.
 
 ### License - GPLv3
 The demo project is licensed under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
