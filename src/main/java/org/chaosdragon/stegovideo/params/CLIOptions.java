@@ -59,17 +59,17 @@ public class CLIOptions {
         options.addOption(Option.builder("str")
                 .argName("strength")
                 .hasArg()
-                .desc("embedding strength (8-64)") // TODO: check
+                .desc("embedding strength (1-64). Defaults to 8. Recommendations: Kaur 8-64; Dubai 16-64; Kothari 16-64; Haar 2-4")
                 .build());
         options.addOption(Option.builder("com")
                 .argName("level")
                 .hasArg()
-                .desc("compression level (8-64)") // TODO: check
+                .desc("the quality of the image during DCT transformation (0 best - 25 worst), defaults to 0")
                 .build());
         options.addOption(Option.builder("block")
                 .argName("size")
                 .hasArg()
-                .desc("DCT block size (8-64)") // TODO: check
+                .desc("DCT block size. Defaults to 8")
                 .build());
         options.addOption(Option.builder()
                 .longOpt("no-noise")

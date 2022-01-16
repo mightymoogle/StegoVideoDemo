@@ -50,8 +50,6 @@ public class StegoVideoApp {
     private static void run(String[] args) {
         if (args.length > 0) {
             String command = args[0];
-            // TODO: 100% PROGRESS for EXTRACT / PSNR
-
             if (command.equalsIgnoreCase("e") || command.equalsIgnoreCase("embed")) {
                 Options options = prepareEmbeddingOptions();
                 parseAndExecute("embed", args, options,
