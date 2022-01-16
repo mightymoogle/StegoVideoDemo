@@ -116,4 +116,4 @@ Also, there are multiple sample watermarks provided:
 
 ### License - GPLv3
 The demo project is licensed under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
-The included samples are not covered by the licence and should not be used in your projects.
+The included sample video and watermark files are not covered by the licence and should not be used in your projects.
