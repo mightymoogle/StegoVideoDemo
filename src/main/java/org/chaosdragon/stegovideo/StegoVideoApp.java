@@ -41,6 +41,7 @@ public class StegoVideoApp {
             System.out.println("*** Video Steganography / Watermarking Demo Tool ***");
             System.out.println("(C) David Griberman 2014-2022");
             System.out.println();
+            verifyRunningOn32BitJava();
             run(args);
         } catch (Exception e) {
             log.error("Critical application error", e);
@@ -104,7 +105,7 @@ public class StegoVideoApp {
     }
 
     private static void embed(InputOutputOptions io,
-                             AlgorithmOptions algorithmOptions, AttackOptions attackOptions) {
+                              AlgorithmOptions algorithmOptions, AttackOptions attackOptions) {
         try {
             EncoderFactory factory = new BWBitmapEncoderFactory(io.getPayloadPath())
                     .setKey(getKey(algorithmOptions.getKey().toCharArray()))
@@ -123,7 +124,7 @@ public class StegoVideoApp {
             videoEmbedding.setAttackSettings(attackOptions);
 
             log.info("Started embedding {} -> {}", io.getContainerPath(), io.getStegoconainerPath());
-            Thread t = new Thread(new EmbeddingTask(videoEmbedding,"Embed"));
+            Thread t = new Thread(new EmbeddingTask(videoEmbedding, "Embed"));
             t.start();
             t.join();
         } catch (Exception e) {
@@ -132,7 +133,7 @@ public class StegoVideoApp {
     }
 
     private static void extract(InputOutputOptions io,
-                               AlgorithmOptions algorithmOptions) {
+                                AlgorithmOptions algorithmOptions) {
         try {
             boolean checkMark = io.getOriginalPayloadPath() != null; // Check with original watermark
             boolean extractEachToFile = io.getOutputPath() != null; // Extract per-frame watermarks separately
@@ -165,7 +166,7 @@ public class StegoVideoApp {
 
             log.info("Started extracting {} -> {}", io.getStegoconainerPath(), io.getPayloadPath());
             Thread t = new Thread(new ExtractingTask(videoExtracting, io.getPayloadPath(),
-                    extractEachToFile, checkMark,"Extract"));
+                    extractEachToFile, checkMark, "Extract"));
 
             t.setName("Extract: " + io.getStegoconainerPath());
             t.start();
@@ -189,6 +190,15 @@ public class StegoVideoApp {
             t.join();
         } catch (Exception e) {
             log.error("Error during PSNR calculation!", e);
+        }
+    }
+
+    private static void verifyRunningOn32BitJava() {
+        String model = System.getProperty("sun.arch.data.model");
+        if (!model.equals("32")) {
+            log.warn("You are most likely not running using 32 bit Java. Detected: {}", model);
+            log.warn("Xuggler library has known issues with 64 bit Java (crashing on Windows).");
+            log.warn("Please consider using the 32 bit version of Java 8 SDK or continue on your own risk!");
         }
     }
 }
