@@ -277,10 +277,8 @@ public class MasterWriter {
             if (!last) {
                 //Advanced mode
                 if (box == null) {
-                    // TODO: What happened here? Check with all algorithnms!!!
-                    boolean yc = (dtc instanceof KaurAlgorithm);
-                    yc = true;
-                    box = new AdaptiveBox(img, p.getTimeStamp(), yc);
+                    // TODO: yCbCr should probably be set based on the image, not always true. Keep as is for now.
+                    box = new AdaptiveBox(img, p.getTimeStamp(), true);
                 } else {
                     box.add(img, p.getTimeStamp());
                 }

@@ -83,7 +83,7 @@ public class CLIOptions {
         if (embedding) {
             options.addOption(Option.builder()
                     .longOpt("adaptive")
-                    .desc("use adaptive embedding (see documentation)")
+                    .desc("use adaptive embedding (see documentation). Supports only Kaur and Kothari algorithms")
                     .build());
         }
     }
@@ -250,7 +250,12 @@ public class CLIOptions {
 
         // Only for embedding!
         if (line.hasOption("adaptive") && embed) {
-            options.setAdaptiveEmbedding(true);
+            if (options.getEmbeddingAlgorithmType() == EmbeddingAlgorithmType.KAUR_ALGORITHM
+                    || options.getEmbeddingAlgorithmType() == EmbeddingAlgorithmType.KOTHARI_ALGORITHM) {
+                options.setAdaptiveEmbedding(true);
+            } else {
+                throw new IllegalArgumentException("Adaptive embedding supported only for KAUR and KOTHARI algorithms!");
+            }
         }
 
         return options;

@@ -99,7 +99,7 @@ All algorithms support various parameters. The main ones:
 3. `Block size` - this controls the block size of the DCT transformation. We recommend keeping it at 8.
 4. `Adaptive mode`  - this enables the Adaptive mode described in the article in the introduction. 
    It embeds based on the movement in the video and ignores monotone images. 
-   Please note - implementation is very slow and basic.
+   Please note - implementation is very slow and basic. Only `Kaur` and `Kothari` algorithms supported.
 
 ## Sample files
 The folder `samples` includes 3 short sample video files for testing:
